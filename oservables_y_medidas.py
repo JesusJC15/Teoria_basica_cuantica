@@ -1,5 +1,5 @@
-import numpy as np
 import math
+import numpy as np
 
 
 def normalizar(vect):
@@ -10,6 +10,7 @@ def normalizar(vect):
     if norm == 0:
         return vect
     vect_n = np.round(vect / norm, 2)
+    print(norm)
     return vect_n
 
 
@@ -24,12 +25,13 @@ def part_una_linea(vect, pos):
     return prob
 
 
-def transitar(vect1, vect2):
-    """Calcula la amplitud de transicion de un vector a otro
+def ampli_tran(vect1, vect2):
+    """Calcula la probabilidad de la amplitud de transicion de un vector a otro
     (vect, vect) -> cplx
     """
     vect1 = normalizar(vect1)
     vect2 = normalizar(vect2)
     bra = np.conjugate(np.transpose(vect2))
     prod_int = np.dot(bra, vect1)
-    return np.round(prod_int, 0)
+    prob = np.linalg.norm(prod_int)**2
+    return np.round(prob, 0)
